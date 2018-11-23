@@ -1,0 +1,46 @@
+<h1>Contacts</h1>
+<hr>
+<div class="row">
+    <div class="col">
+        <input #term type="text" (keyup.enter)="search(term.value)" class="form-control" placeholder="search contact">
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12 text-right">
+        <button [routerLink]="['/contact', 'new']" class="btn btn-outline-success" type="button" name="button">New Contact</button>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table maxtable" id="data">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Number</th>
+                    <th scope="col">edit</th>
+                    <th scope="col">delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let k of contacts | keys; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ contacts[k].name }}</td>
+                    <td>{{ contacts[k].lastname }}</td>
+                    <td>{{ contacts[k].phone }}</td>
+                    <td>
+                        <button [routerLink]="['/contact', k]" type="button" class="btn btn-outline-warning">Edit</button>
+                    </td>
+                    <td>
+                        <button (click)="deleteContacts(k)" type="button" class="btn btn-outline-danger">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div *ngIf="(contacts | keys).length === 0" class="alert alert-info" role="alert"><strong>there are no contacts to show</strong></div>
+    </div>
+</div>
