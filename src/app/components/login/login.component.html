@@ -1,0 +1,9 @@
+<div class="row">
+    <div class="col-md-12 text-right" *ngIf="session">
+        <button (click)="out()" type="button" class="btn btn-outline-danger"> logout</button>
+    </div>
+    <div class="col-md-12 text-center" *ngIf="!session">
+        <p>login with your google account</p>
+        <button (click)="enter('google')" type="button" class="btn btn-outline-primary"> google</button>
+    </div>
+</div>

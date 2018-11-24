@@ -11,6 +11,7 @@ import * as $ from 'jquery';
 export class ContactsComponent implements OnInit {
 
   contacts: any;
+  session = false;
 
   constructor( private _contactsService: ContactsService ) {
     this._contactsService.getContacts()
@@ -39,5 +40,16 @@ export class ContactsComponent implements OnInit {
     $(document).ready(function() {
       $('tr:not(:has(th)):not(:contains(' + term + '))').hide();
     });
+  }
+
+  enter( provider: string ) {
+    console.log(provider);
+    this._contactsService.login( provider );
+    this.session = true;
+  }
+  out() {
+    this._contactsService.logout();
+    this.session = false;
+    window.location.reload();
   }
 }

@@ -1,12 +1,21 @@
-<h1>Contacts</h1>
-<hr>
 <div class="row">
+    <div class="col-md-12 text-right" *ngIf="_contactsService.users.uid">
+        <button (click)="out()" type="button" class="btn btn-outline-danger"> logout</button>
+    </div>
+    <div class="col-md-12 text-center" *ngIf="!_contactsService.users.uid">
+        <p>Please login with your google account</p>
+        <button (click)="enter('google')" type="button" class="btn btn-outline-primary"> google</button>
+    </div>
+</div>
+<h1 *ngIf="_contactsService.users.uid">Contacts</h1>
+<hr>
+<div class="row" *ngIf="_contactsService.users.uid">
     <div class="col">
         <input #term type="text" (keyup.enter)="search(term.value)" class="form-control" placeholder="search contact">
     </div>
 </div>
 <br>
-<div class="row">
+<div class="row" *ngIf="_contactsService.users.uid">
     <div class="col-md-12 text-right">
         <button [routerLink]="['/contact', 'new']" class="btn btn-outline-success" type="button" name="button">New Contact</button>
     </div>
@@ -14,7 +23,7 @@
 <br>
 <div class="row">
     <div class="col-md-12">
-        <table class="table maxtable" id="data">
+        <table class="table maxtable" id="data" *ngIf="_contactsService.users.uid">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>

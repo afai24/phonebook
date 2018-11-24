@@ -61,6 +61,4 @@ contact: any = {
     forma.reset();
   }
 
-  
-
 }

@@ -2,15 +2,34 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Contact } from '../interfaces/contact.interface';
 import { map } from 'rxjs/operators';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactsService {
 
+  public users: any = {};
   contactsUrl = 'https://phonebook-46c42.firebaseio.com/contacts.json';
   contactUrl = 'https://phonebook-46c42.firebaseio.com/contacts/';
-  constructor( private http: Http ) { }
+  constructor( private http: Http, public afAuth: AngularFireAuth ) {
+    this.afAuth.authState.subscribe(user => {
+       console.log(user);
+      if (!user) {
+        return;
+      }
+      this.users.name = user.displayName;
+      this.users.uid = user.uid;
+    });
+  }
+
+  login( provider: string ) {
+    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+  }
+  logout() {
+    this.afAuth.auth.signOut();
+  }
 
   newContact( contact: Contact) {
     const body = JSON.stringify(contact);
