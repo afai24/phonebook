@@ -16,7 +16,6 @@ import { APP_ROUTING } from './app.routes';
 // import services
 import { ContactsService } from './services/contacts.service';
 import { KeysPipe } from './pipes/keys.pipe';
-import { LoadingComponent } from './components/shared/loading/loading.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { LoginComponent } from './components/login/login.component';
 
@@ -34,7 +33,6 @@ import { environment } from '../environments/environment';
     NavbarComponent,
     ContactComponent,
     KeysPipe,
-    LoadingComponent,
     CardsComponent,
     LoginComponent
   ],

@@ -4,10 +4,10 @@
     </div>
     <div class="col-md-12 text-center" *ngIf="!_contactsService.users.uid">
         <p>Please login with your google account</p>
-        <button (click)="enter('google')" type="button" class="btn btn-outline-primary"> google</button>
+        <button (click)="enter('google')" type="button" class="btn btn-outline-primary"> Google</button>
     </div>
 </div>
-<h1 *ngIf="_contactsService.users.uid">Contacts</h1>
+<h1 *ngIf="_contactsService.users.uid">Contacts<small> of {{_contactsService.users.name}} </small></h1>
 <hr>
 <div class="row" *ngIf="_contactsService.users.uid">
     <div class="col">

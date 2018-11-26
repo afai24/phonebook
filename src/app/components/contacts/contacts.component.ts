@@ -16,7 +16,7 @@ export class ContactsComponent implements OnInit {
   constructor( private _contactsService: ContactsService ) {
     this._contactsService.getContacts()
       .subscribe( contacts => {
-        console.log(contacts);
+        // console.log(contacts);
         this.contacts = contacts;
       });
    }

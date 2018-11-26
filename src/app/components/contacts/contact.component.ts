@@ -19,6 +19,7 @@ contact: any = {
 
   new = false;
   id: string;
+  newContact = false;
 
   constructor(private _contactService: ContactsService,
      private router: Router,
@@ -52,12 +53,12 @@ contact: any = {
       error => console.error(error)
       );
     }
-
+    this.newContact = true;
   }
 
   addNew(forma: NgForm) {
     this.router.navigate(['/contact', 'new']);
-
+    this.newContact = false;
     forma.reset();
   }
 
